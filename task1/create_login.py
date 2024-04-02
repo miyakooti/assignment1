@@ -19,14 +19,17 @@ def create_dax_table(dyn_resource=None):
             {"AttributeName": "user_name", "KeyType": "RANGE"},
         ],
         "AttributeDefinitions": [
-            {"AttributeName": "email", "AttributeType": "N"},
-            {"AttributeName": "user_name", "AttributeType": "N"},
+            {"AttributeName": "email", "AttributeType": "S"},
+            {"AttributeName": "user_name", "AttributeType": "S"},
         ],
         "ProvisionedThroughput": {"ReadCapacityUnits": 10, "WriteCapacityUnits": 10},
     }
     table = dyn_resource.create_table(**params)
     print(f"Creating {table_name}...")
     table.wait_until_exists()
+
+
+    
     return table
 
 
