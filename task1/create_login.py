@@ -11,16 +11,16 @@ def create_dax_table(dyn_resource=None):
     if dyn_resource is None:
         dyn_resource = boto3.resource("dynamodb")
 
-    table_name = "TryDaxTable"
+    table_name = "login"
     params = {
         "TableName": table_name,
         "KeySchema": [
-            {"AttributeName": "partition_key", "KeyType": "HASH"},
-            {"AttributeName": "sort_key", "KeyType": "RANGE"},
+            {"AttributeName": "email", "KeyType": "HASH"},
+            {"AttributeName": "user_name", "KeyType": "RANGE"},
         ],
         "AttributeDefinitions": [
-            {"AttributeName": "partition_key", "AttributeType": "N"},
-            {"AttributeName": "sort_key", "AttributeType": "N"},
+            {"AttributeName": "email", "AttributeType": "N"},
+            {"AttributeName": "user_name", "AttributeType": "N"},
         ],
         "ProvisionedThroughput": {"ReadCapacityUnits": 10, "WriteCapacityUnits": 10},
     }
